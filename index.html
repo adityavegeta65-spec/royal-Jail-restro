@@ -80,7 +80,7 @@ background:radial-gradient(ellipse at 50% 0,#3a3630 0,transparent 60%),linear-gr
 /* picks */
 .pick{background:var(--bg);border:1px solid var(--line);border-radius:2px;overflow:hidden}
 .ph{aspect-ratio:4/3;display:grid;place-items:center;text-align:center;padding:12px;color:var(--metal);font-size:.8rem;background:repeating-linear-gradient(45deg,#1d1f22 0 12px,#23262a 12px 24px);background-size:cover;background-position:center}
-.pick div.t{padding:18px 20px}
+.pick div.t{padding:18px 20px}.pick span.ref{display:block;margin-bottom:7px;color:var(--gold);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}.pick span.ref+span{display:block}
 .pick span{color:var(--muted);font-size:.9rem}
 /* gallery */
 .gal{columns:3 220px;column-gap:14px}
@@ -387,7 +387,12 @@ const SITE = {
     ["Royal Jail Special Kebab","Tandoor & Kebabs",400],["Tandoori Chicken","Tandoor & Kebabs",700],
     ["Chicken Lollipop","Chinese",400],["Mutton Rogan Josh","Non-Veg Specials",400]
   ],
-  pickImages: [],
+   pickImages: [
+     "https://images.unsplash.com/photo-1544025162-d76694265947?w=720&q=72&auto=format",
+     "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=720&q=72&auto=format",
+     "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=720&q=72&auto=format",
+     "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=720&q=72&auto=format"
+   ],
   // gallery: {label, src (leave "" for placeholder), ratio}
   gallery: [
     {label:"Main dining hall with the Royal Jail sign",src:IMG["hall"],ratio:"497/362"},
@@ -417,7 +422,7 @@ $("#map").innerHTML=`<div class="map-card"><div><div class="pin" aria-hidden="tr
 $("#features").innerHTML=SITE.features.map(([h,p])=>`<article class="card"><h3>${esc(h)}</h3><p>${esc(p)}</p></article>`).join("");
 const ph=(label,src,ratio)=>src?`<img src="${esc(src)}" alt="${esc(label)}" loading="lazy" decoding="async" style="width:100%;aspect-ratio:${ratio||"4/3"};object-fit:cover;display:block">`
  :`<div class="ph" role="img" aria-label="${esc(label)} (photo placeholder)" style="--r:${ratio||"4/3"}">${esc(label)}<br>Photo to be added</div>`;
-$("#picksGrid").innerHTML=SITE.picks.map(([n,c,p],i)=>`<article class="pick">${ph(n,SITE.pickImages[i])}<div class="t"><h3>${esc(n)}</h3><span>${esc(c)} · ${rupee(p)}</span></div></article>`).join("");
+ $("#picksGrid").innerHTML=SITE.picks.map(([n,c,p],i)=>`<article class="pick">${ph(n,SITE.pickImages[i])}<div class="t"><span class="ref">Reference image</span><h3>${esc(n)}</h3><span>${esc(c)} · ${rupee(p)}</span></div></article>`).join("");
 /* menu tabs */
 const cats=Object.keys(SITE.menu);
 $("#tabs").innerHTML=cats.map((c,i)=>`<button class="tab" role="tab" aria-selected="${i==0}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
