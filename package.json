@@ -1,0 +1,9 @@
+{
+  "name": "the-royal-jail-restro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for The Royal Jail Restro",
+  "scripts": {
+    "start": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');http.createServer((req,res)=>{let p=path.join(process.cwd(),decodeURIComponent(req.url.split('?')[0]));if(p.endsWith('/'))p+='index.html';fs.readFile(p,(e,d)=>{if(e){res.statusCode=404;return res.end('Not Found')}res.end(d)})}).listen(process.env.PORT||4000,'0.0.0.0')\""
+  }
+}
