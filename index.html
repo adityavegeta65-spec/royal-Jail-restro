@@ -413,8 +413,7 @@ const wa=t=>`https://wa.me/${SITE.whatsapp}${t?"?text="+encodeURIComponent(t):""
 $("#waBtn").href=wa("Hello, I have a query for "+SITE.name+".");$("#bWa").href=wa("Hello, I have a query for "+SITE.name+".");$("#reserveWa").href=wa("Hello, I would like to ask about reserving a table at "+SITE.name+".");
 $("#dirBtn").href=SITE.mapsLink;
 if(SITE.heroImage){const hi=new Image(),hv=$("#heroImg"),go=()=>{hv.style.backgroundImage=`url(${SITE.heroImage})`;requestAnimationFrame(()=>hv.classList.add("ld"))};hi.src=SITE.heroImage;(hi.decode?hi.decode():Promise.reject()).then(go,go)}
-$("#map").innerHTML=SITE.mapEmbedUrl?`<iframe src="${esc(SITE.mapEmbedUrl)}" title="Map to ${esc(SITE.name)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
- :`<div><p>Map preview goes here.</p><p style="margin-top:10px"><a class="btn" href="${esc(SITE.mapsLink)}" target="_blank" rel="noopener">Open in Google Maps</a></p></div>`;
+$("#map").innerHTML=`<div class="map-card"><div><div class="pin" aria-hidden="true">⌖</div><h3>Find your way in</h3><p>${esc(SITE.address.join(" "))}</p><a class="btn solid" href="${esc(SITE.mapsLink)}" target="_blank" rel="noopener">Open in Google Maps</a></div></div>`;
 $("#features").innerHTML=SITE.features.map(([h,p])=>`<article class="card"><h3>${esc(h)}</h3><p>${esc(p)}</p></article>`).join("");
 const ph=(label,src,ratio)=>src?`<img src="${esc(src)}" alt="${esc(label)}" loading="lazy" decoding="async" style="width:100%;aspect-ratio:${ratio||"4/3"};object-fit:cover;display:block">`
  :`<div class="ph" role="img" aria-label="${esc(label)} (photo placeholder)" style="--r:${ratio||"4/3"}">${esc(label)}<br>Photo to be added</div>`;
