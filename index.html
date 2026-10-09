@@ -55,6 +55,7 @@ background:radial-gradient(ellipse at 50% 0,#3a3630 0,transparent 60%),linear-gr
 .hero p.lead{font-size:1.2rem;max-width:34ch;margin:22px 0 30px;color:var(--cream);animation:rise .8s .12s both}
 .hero .cta{display:flex;gap:14px;flex-wrap:wrap;animation:rise .8s .22s both}
 .meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:34px;color:var(--muted);font-size:.92rem}
+.meta span{display:inline-flex;align-items:center;gap:7px}.meta span:first-child::first-letter{color:var(--gold)}
 .scroll{position:absolute;bottom:18px;left:50%;width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:pulse 2s infinite}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}}
 @keyframes pulse{50%{opacity:.25}}
@@ -64,6 +65,11 @@ background:radial-gradient(ellipse at 50% 0,#3a3630 0,transparent 60%),linear-gr
 .card{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--metal);padding:26px;border-radius:2px}
 .card p{color:var(--muted);font-size:.95rem;margin-top:8px}
 .alt{background:var(--bg2);border-block:1px solid var(--line)}
+/* proof strip */
+.proof{padding:0;background:var(--bg2);border-block:1px solid var(--line)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);border-inline:1px solid var(--line)}
+.proof-item{padding:22px 26px;border-right:1px solid var(--line)}.proof-item:last-child{border-right:0}
+.proof-item b{display:block;color:var(--gold);font:900 1.35rem/1 var(--d);letter-spacing:.04em}.proof-item span{display:block;margin-top:6px;color:var(--muted);font-size:.86rem}
 /* menu */
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0}
 .tab{background:none;color:var(--muted);border:1px solid var(--line);padding:9px 18px;cursor:pointer;font:500 .92rem var(--b);border-radius:2px}
@@ -92,6 +98,12 @@ label{font-size:.88rem;color:var(--muted)}
 input,select,textarea{background:var(--bg2);border:1px solid var(--line);color:var(--cream);padding:12px;font:inherit;border-radius:2px;width:100%}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none}
 .res{background:linear-gradient(var(--bg),#17181a);}
+.booking-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:42px;align-items:start}
+.booking-grid form{margin-top:26px}
+.booking-note{border:1px solid var(--line);border-top:3px solid var(--gold);background:linear-gradient(145deg,rgba(194,161,95,.12),rgba(26,28,31,.92) 52%);padding:28px;position:relative;overflow:hidden}
+.booking-note::after{content:"01";position:absolute;right:-8px;bottom:-28px;color:rgba(194,161,95,.09);font:900 9rem/1 var(--d);pointer-events:none}
+.booking-note .eyebrow{color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:.16em}.booking-note h3{margin:12px 0 10px;font-size:2rem}.booking-note>p:not(.eyebrow){color:var(--muted);font-size:.92rem}
+.steps{display:grid;gap:14px;margin:24px 0;position:relative;z-index:1}.step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}.step b{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font:700 .78rem var(--b)}.step span{padding-top:3px;color:var(--cream);font-size:.9rem}.booking-note .btn{width:100%;text-align:center;position:relative;z-index:1}
 /* visit */
 .visit{display:grid;gap:36px;grid-template-columns:1fr 1fr;align-items:stretch}
 .visit address{font-style:normal;color:var(--muted);margin:14px 0}
@@ -110,7 +122,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;color:var(--muted);f
 .burger{display:block}
 .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 20px 20px}
 .links.open{display:flex}.links a:not(.btn){padding:14px 0;border-bottom:1px solid var(--line)}.links .btn{margin-top:14px;text-align:center}
-.visit,form{grid-template-columns:1fr}
+ .visit,form,.booking-grid{grid-template-columns:1fr}
+ .proof-grid{grid-template-columns:1fr}.proof-item{border-right:0;border-bottom:1px solid var(--line);padding:16px 20px}.proof-item:last-child{border-bottom:0}
 section{padding:60px 0}
 .bar{display:flex}
 }
@@ -244,6 +257,12 @@ g.addEventListener("click",end);addEventListener("keydown",e=>{if(e.key==="Escap
 </div><span class="scroll" aria-hidden="true"></span>
 </section>
 
+<section class="proof" aria-label="Restaurant highlights"><div class="wrap proof-grid">
+ <div class="proof-item"><b>11 AM — 11:30 PM</b><span>Open every day</span></div>
+ <div class="proof-item"><b>Patna, Bihar</b><span>Near Saguna More</span></div>
+ <div class="proof-item"><b>A varied menu</b><span>North Indian, Chinese, Mughlai, kebabs & more</span></div>
+</div></section>
+
 <section id="experience"><div class="wrap">
 <div class="rule"></div>
 <h2>NOT JUST A MEAL.<br>AN EXPERIENCE.</h2>
@@ -273,18 +292,31 @@ g.addEventListener("click",end);addEventListener("keydown",e=>{if(e.key==="Escap
 </div></section>
 
 <section id="reserve" class="res"><div class="wrap">
-<h2>YOUR CELL AWAITS.</h2>
-<p class="sub">Planning a meal with friends, family or a group? Reserve your table at The Royal Jail Restro.</p>
-<form id="rf">
+ <h2>YOUR CELL AWAITS.</h2>
+ <p class="sub">Planning a meal with friends, family or a group? Reserve your table at The Royal Jail Restro.</p>
+ <div class="booking-grid">
+ <form id="rf">
 <div class="f"><label for="n">Name</label><input id="n" required autocomplete="name"></div>
 <div class="f"><label for="p">Phone number</label><input id="p" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9+ \-]{10,15}" title="Enter a valid phone number" maxlength="15"></div>
 <div class="f"><label for="d">Date</label><input id="d" type="date" required></div>
 <div class="f"><label for="t">Preferred time</label><input id="t" type="time" required></div>
 <div class="f w"><label for="g">Number of guests</label><input id="g" type="number" min="1" max="100" required inputmode="numeric"></div>
 <div class="f w"><label for="m">Message (optional)</label><textarea id="m" rows="3"></textarea></div>
-<div class="f w"><button class="btn solid" type="submit">Request Reservation</button>
-<p class="note">This opens WhatsApp with your request. The restaurant will confirm availability.</p></div>
-</form>
+ <div class="f w"><button class="btn solid" type="submit">Request Reservation</button>
+ <p class="note">This opens WhatsApp with your request. The restaurant will confirm availability.</p></div>
+ </form>
+ <aside class="booking-note">
+  <p class="eyebrow">RESERVATIONS / THE ROYAL JAIL</p>
+  <h3>MAKE IT A NIGHT TO REMEMBER.</h3>
+  <p>Share your preferred time and guest count. We will send the request directly to the restaurant on WhatsApp.</p>
+  <div class="steps">
+   <div class="step"><b>1</b><span>Choose your date and preferred time.</span></div>
+   <div class="step"><b>2</b><span>Send the request with one tap.</span></div>
+   <div class="step"><b>3</b><span>Wait for the restaurant to confirm.</span></div>
+  </div>
+  <a class="btn" id="reserveWa" target="_blank" rel="noopener">Chat on WhatsApp</a>
+ </aside>
+ </div>
 </div></section>
 
 <section id="visit"><div class="wrap"><div class="visit">
@@ -378,7 +410,7 @@ $$("[data-bind]").forEach(e=>e.textContent=bind[e.dataset.bind]);
 $("#addr").innerHTML=SITE.address.map(esc).join("<br>");
 ["#phoneLink","#callBtn","#bCall"].forEach(s=>$(s).href="tel:"+SITE.phoneTel);
 const wa=t=>`https://wa.me/${SITE.whatsapp}${t?"?text="+encodeURIComponent(t):""}`;
-$("#waBtn").href=wa("Hello, I have a query for "+SITE.name+".");$("#bWa").href=wa("Hello, I have a query for "+SITE.name+".");
+$("#waBtn").href=wa("Hello, I have a query for "+SITE.name+".");$("#bWa").href=wa("Hello, I have a query for "+SITE.name+".");$("#reserveWa").href=wa("Hello, I would like to ask about reserving a table at "+SITE.name+".");
 $("#dirBtn").href=SITE.mapsLink;
 if(SITE.heroImage){const hi=new Image(),hv=$("#heroImg"),go=()=>{hv.style.backgroundImage=`url(${SITE.heroImage})`;requestAnimationFrame(()=>hv.classList.add("ld"))};hi.src=SITE.heroImage;(hi.decode?hi.decode():Promise.reject()).then(go,go)}
 $("#map").innerHTML=SITE.mapEmbedUrl?`<iframe src="${esc(SITE.mapEmbedUrl)}" title="Map to ${esc(SITE.name)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
