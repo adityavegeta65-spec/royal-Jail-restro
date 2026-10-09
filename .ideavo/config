@@ -1,0 +1,27 @@
+{
+  "systemSetup": [],
+  "templateName": "custom",
+  "projectDependencies": [],
+  "codeChecks": [],
+  "buildSteps": [],
+  "runStep": [
+    {
+      "name": "Run Dev Server",
+      "command": "node -e \"const http=require('http'),fs=require('fs'),path=require('path'),mime={'html':'text/html','css':'text/css','js':'text/javascript','webp':'image/webp','png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','svg':'image/svg+xml'};http.createServer((req,res)=>{let u=decodeURIComponent(req.url.split('?')[0]),p=path.join(process.cwd(),u==='/'?'index.html':u);fs.readFile(p,(e,d)=>{if(e){res.statusCode=404;return res.end('Not Found')}res.setHeader('Content-Type',mime[path.extname(p).slice(1)]||'application/octet-stream');res.end(d)})}).listen(4000,'0.0.0.0')\"",
+      "port": "4000"
+    }
+  ],
+  "deploySteps": [],
+  "cleanupFiles": [
+    ".env",
+    ".ideavo/config",
+    ".ideavo/template"
+  ],
+  "packageManager": "npm",
+  "envPaths": [
+    {
+      "name": "default",
+      "path": ".env"
+    }
+  ]
+}
